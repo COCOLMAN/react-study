@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head lang="en">
+    <meta charset="UTF-8">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <title> Hello React </title>
+    <script src="https://fb.me/react-with-addons-0.14.0.js"></script>
+    <script src="https://fb.me/react-dom-0.14.0.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.13.1.js"></script>
+  </head>
+
+  <body>
+    <div id="view"/>
+    <script type="text/jsx">
+      var HelloMessage = React.createClass({
+      componentWillMount: function(){
+      console.log("componentWillMount");
+      },
+      componentDidMount: function(){
+      console.log("componentDidMoune");
+      },
+      componentWillUnmount: function(){
+      console.log("componentWillUnmount");
+      },
+      render: function(){
+      console.log("render");
+      return <h2>{this.props.message}</h2>;
+      }
+      });
+ReactDOM.render(
+	<HelloMessage message='Hi'/>,
+    document.getElementById('view')
+)
+</script>
+    </body>
+  
+</html>
