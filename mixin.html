@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head lang="en">
+    <meta charset="UTF-8">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <title> Hello React </title>
+    <script src="https://fb.me/react-with-addons-0.14.0.js"></script>
+    <script src="https://fb.me/react-dom-0.14.0.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.13.1.js"></script>
+  </head>
+
+  <body>
+    <div id="view"/>
+    <script type="text/jsx">
+      var ReactMixin1 = {
+	  log: function(message){
+	      console.log(message);
+	  },
+	  componentWillMount: function(){
+	      this.log('componentWillMount from ReactMixin1');
+	  }
+      };
+
+var ReactMixin2 = {
+    componentWillMount: function(){
+	console.log("componentWillMount from ReactMixin2");
+    }
+};
+
+var HelloMessage = React.createClass({
+    mixins : [ReactMixin1, ReactMixin2],
+    componentWillMount: function(){
+	this.log('componentWillMount from HelloMessage');
+    },
+    render : function(){
+	return <h2>{this.props.message}</h2>;
+    }
+});
+
+var Button = React.createClass({
+    mixins : [ReactMixin2, ReactMixin1],
+    clicked: function(){
+	this.log(this.props.text + ' clicked');
+    },
+    componentWillMount: function(){
+	this.log('componentWillMount from Button');
+    },
+    render : function(){
+	return <button onClick = {this.clicked}>
+	    {this.props.text}
+	</button>
+    }
+});
+
+var HelloReact = React.createClass({
+    render: function(){
+	return (
+		<div>
+		<HelloMessage message = 'Hi'/>
+		<Button text = 'ok'/>
+		</div>
+	)
+    }
+});
+
+ReactDOM.render(
+	<HelloReact/>,
+    document.getElementById('view')
+);
+
+
+
+
+
+</script>
+    </body>
+  
+</html>
