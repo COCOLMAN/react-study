@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+  <head lang="en">
+    <meta charset="UTF-8">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <title> Hello React </title>
+    <script src="https://fb.me/react-with-addons-0.14.0.js"></script>
+    <script src="https://fb.me/react-dom-0.14.0.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.13.1.js"></script>
+  </head>
+
+  <body>
+    <div id="view"/>
+    <script type="text/jsx">
+    var TextBox = React.createClass({
+	render: function(){
+	    return(
+		    <input className = 'form-control'
+		name={this.props.name}
+		type='text'
+		value={this.props.value}
+		onChange={this.props.onChange}/>
+	    );
+	}
+    });
+
+
+var ExampleForm = React.createClass({
+    getInitialState: function(){
+	return  {form: {firstName: 'Ryan', lastName: 'Vice'}}
+    },
+
+    onChange: function(evnet){
+	this.state.form[event.target.name] = event.target.value;
+	this.setState({form: this.state.form});
+    },
+
+    onSubmit: function(){
+	event.preventDefault();
+	alert('Form submitted. firstName; ' +
+	      this.state.form.firstName+
+	      ', lastName: ' +
+	      this.state.form.lastName);
+    },
+
+    render: function(){
+	return (
+		<form onSubmit = {this.onSubmit}>
+		<TextBox name = 'firstName'
+	    value={this.state.form.firstName}
+	    onChange={this.onChange}/>
+		      <TextBox name = 'lastName'
+		      value={this.state.form.lastName}
+		      onChange={this.onChange}/>
+				<button className = 'btn btn-success'
+				type='submit'>Submit</button>
+				</form>
+	);
+    }
+})
+
+    
+
+ReactDOM.render(
+	<ExampleForm/>,
+    document.getElementById('view')
+);
+
+
+</script>
+    </body>
+  
+</html>
